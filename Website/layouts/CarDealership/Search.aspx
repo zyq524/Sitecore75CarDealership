@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-lg-1">
         <div class="btn-group">
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Seach by <span class="caret"></span></a>
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Search by <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Item I</a></li>
             <li><a href="#">Item II</a></li>
@@ -26,7 +26,7 @@
       </div>
       <div class="col-lg-6">
         <form class="navbar-form">
-          <input type="text" class="form-control" placeholder="Search...">
+          <input type="text" class="form-control" placeholder="Search..." disabled="true">
         </form>
       </div>
     </div>
@@ -49,8 +49,16 @@
   <script src="../../Scripts/jquery.min.js"></script>
   <script src="../../Scripts/bootstrap.min.js"></script>
   <script>
-    $(".dropdown-menu li a").click(function () {
+    $(document).ready(function () {
+      var searchConstraints=
+      $("input.form-control").attr("disabled", false);
+    });
+
+    $(".dropdown-menu li a").click(function() {
       var selText = $(this).text();
+
+      $("input.form-control").attr("disabled", false);
+
       $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
     });
   </script>
