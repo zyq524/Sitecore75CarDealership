@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {FBC68999-DCE2-42FE-AF8E-D61A5727F962}
+database: master
+path: /sitecore/content/Home/Data/SearchConstraints/SearchBySalesPerson
+parent: {57C38F3C-FEF8-4591-B489-5269B92FCB55}
+name: SearchBySalesPerson
+master: {00000000-0000-0000-0000-000000000000}
+template: {C689C535-A82B-4CB8-A88A-18A0E869000F}
+templatekey: SearchConstraint
+
+----field----
+field: {6295D994-1935-46B6-B76C-3465A4401672}
+name: Name
+key: name
+content-length: 29
+
+Search By Sales Person's Name
+----field----
+field: {D69AD6D6-08F1-4CCA-8C52-A5929FAAAE02}
+name: URI
+key: uri
+content-length: 84
+
+/sitecore/api/ssc/cardealership-services-controller/customer/na/getbysalesname?name=
+----version----
+language: en
+version: 1
+revision: 6098ce93-d81c-4f45-999d-4a24eb37dacf
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150113T224638
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+6098ce93-d81c-4f45-999d-4a24eb37dacf
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150113T224721:635567860417318814
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

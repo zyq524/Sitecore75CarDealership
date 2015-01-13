@@ -64,10 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\SearchConstraintController.cs" />
     <Compile Include="Model\CarPurchase.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\SearchConstraint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
+    <Compile Include="Repository\SearchConstraintRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
