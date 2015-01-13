@@ -12,21 +12,18 @@
   <div class="container">
     <h2>Search for customers</h2>
     <div class="row">
-      <div class="col-lg-1">
+      <div class="col-lg-2">
         <div class="btn-group">
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Search by <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Item I</a></li>
-            <li><a href="#">Item II</a></li>
-            <li><a href="#">Item III</a></li>
-            <li><a href="#">Item IV</a></li>
-            <li><a href="#">Item V</a></li>
           </ul>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-6">
         <form class="navbar-form">
-          <input type="text" class="form-control" placeholder="Search..." disabled="true">
+          <input type="text" class="form-control" placeholder="Search..." disabled="disabled">
         </form>
       </div>
     </div>
@@ -50,17 +47,26 @@
   <script src="../../Scripts/bootstrap.min.js"></script>
   <script>
     $(document).ready(function () {
-      var searchConstraints=
-      $("input.form-control").attr("disabled", false);
+      $.ajax({
+        url: '/sitecore/api/ssc/cardealership-services-controller/searchconstraint',
+      }).done(function (data) {
+        var listText = '';
+        for (var i = 0; i < data.length; i++) {
+          listText += '<li><a href="#" data-uri="' + data[i].RestUri + '">' + data[i].Name + '</a></li>';
+        }
+        $(".dropdown-menu").append(listText);
+
+        $(".dropdown-menu li a").click(function () {
+          $("input.form-control").attr("disabled", false);
+
+          var selText = $(this).text();
+          var toggleBtn = $(this).parents('.btn-group').find('.dropdown-toggle');
+          toggleBtn.attr("data-uri", $(this).data("uri"));
+          toggleBtn.html(selText + ' <span class="caret"></span>');
+        });
+      });
     });
 
-    $(".dropdown-menu li a").click(function() {
-      var selText = $(this).text();
-
-      $("input.form-control").attr("disabled", false);
-
-      $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-    });
   </script>
 </body>
 </html>
