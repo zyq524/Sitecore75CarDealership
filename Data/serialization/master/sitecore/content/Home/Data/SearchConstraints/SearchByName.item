@@ -11,8 +11,8 @@ templatekey: SearchConstraint
 
 ----field----
 field: {6295D994-1935-46B6-B76C-3465A4401672}
-name: Name
-key: name
+name: SearchConstraintName
+key: searchconstraintname
 content-length: 23
 
 Search By Customer Name

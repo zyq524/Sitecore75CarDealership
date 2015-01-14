@@ -1,0 +1,114 @@
+----item----
+version: 1
+id: {D54196C4-7761-4B34-978E-BC56EA320CC2}
+database: master
+path: /sitecore/content/Home/Data/Customers/Jack
+parent: {D809F5D1-DA5C-4A68-9F33-2316279B5CBC}
+name: Jack
+master: {00000000-0000-0000-0000-000000000000}
+template: {6A73550F-1DAC-46E9-915C-DDC70EF1E523}
+templatekey: Customer
+
+----version----
+language: en
+version: 1
+revision: e06b48f2-8c04-45f5-b21c-8ba6a9ce6bce
+
+----field----
+field: {336841EE-C8D0-4B80-ABB5-2860FEFD8236}
+name: CustomerName
+key: customername
+content-length: 4
+
+Jack
+----field----
+field: {7E401B2B-FD94-4278-A0AF-CE6C0E75A2B3}
+name: Surname
+key: surname
+content-length: 5
+
+Baker
+----field----
+field: {26973538-4588-43D2-B1A1-02E8621577A3}
+name: Age
+key: age
+content-length: 2
+
+29
+----field----
+field: {470510B1-F926-4DD4-B608-9DCAFDF99BBA}
+name: HouseNumber
+key: housenumber
+content-length: 2
+
+44
+----field----
+field: {4768B201-82C2-46A0-8E11-D3235042C484}
+name: Street
+key: street
+content-length: 10
+
+Strandgade
+----field----
+field: {BCF2DAC4-25F4-4F44-951E-FB3C85BE1039}
+name: Town
+key: town
+content-length: 10
+
+Copenhagen
+----field----
+field: {49E99097-70F5-487B-B7DE-D462C7FC5C22}
+name: ZipCode
+key: zipcode
+content-length: 4
+
+1401
+----field----
+field: {9EDA6939-C47B-4626-BCBC-DB9DB8849F1A}
+name: Country
+key: country
+content-length: 7
+
+Denmark
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150112T164517
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e06b48f2-8c04-45f5-b21c-8ba6a9ce6bce
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150112T164645:635566780051873062
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

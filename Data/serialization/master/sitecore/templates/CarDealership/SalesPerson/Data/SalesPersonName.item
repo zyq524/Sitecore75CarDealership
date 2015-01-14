@@ -2,9 +2,9 @@
 version: 1
 id: {04D9B576-50AF-441D-9151-868BEE975EF6}
 database: master
-path: /sitecore/templates/CarDealership/SalesPerson/Data/Name
+path: /sitecore/templates/CarDealership/SalesPerson/Data/SalesPersonName
 parent: {D40FD47D-B8C9-40AE-9165-F6693EA8EC31}
-name: Name
+name: SalesPersonName
 master: {00000000-0000-0000-0000-000000000000}
 template: {455A3E98-A627-4B40-8035-E683A0331AC7}
 templatekey: Template field
@@ -19,7 +19,7 @@ Single-Line Text
 ----version----
 language: en
 version: 1
-revision: 482efda6-a0e0-4f34-b8c5-c1da38db96b4
+revision: 9c8c02a5-220f-4325-9619-caafa873ae63
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -34,14 +34,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-482efda6-a0e0-4f34-b8c5-c1da38db96b4
+9c8c02a5-220f-4325-9619-caafa873ae63
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150112T160617:635566755770618295
+20150114T133844:635568395243062293
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

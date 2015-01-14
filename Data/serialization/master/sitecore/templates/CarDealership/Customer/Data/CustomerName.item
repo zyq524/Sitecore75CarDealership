@@ -1,10 +1,10 @@
 ----item----
 version: 1
-id: {6295D994-1935-46B6-B76C-3465A4401672}
+id: {336841EE-C8D0-4B80-ABB5-2860FEFD8236}
 database: master
-path: /sitecore/templates/CarDealership/SearchConstraint/Data/Name
-parent: {2CB52AEC-1F57-4F31-B16D-20D207BF17CF}
-name: Name
+path: /sitecore/templates/CarDealership/Customer/Data/CustomerName
+parent: {998B6A9A-346A-4186-B669-F28BF1ACDBA8}
+name: CustomerName
 master: {00000000-0000-0000-0000-000000000000}
 template: {455A3E98-A627-4B40-8035-E683A0331AC7}
 templatekey: Template field
@@ -16,24 +16,10 @@ key: type
 content-length: 16
 
 Single-Line Text
-----field----
-field: {BE351A73-FCB0-4213-93FA-C302D8AB4F51}
-name: Shared
-key: shared
-content-length: 1
-
-1
-----field----
-field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
-name: __Sortorder
-key: __sortorder
-content-length: 3
-
-100
 ----version----
 language: en
 version: 1
-revision: 2d1153d1-7d83-4470-ac21-2cc5dcbc559e
+revision: 3065308a-6da1-46fa-b7d5-7b8b77151147
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,21 +27,21 @@ name: __Created
 key: __created
 content-length: 15
 
-20150113T222540
+20150112T160130
 ----field----
 field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
 name: __Revision
 key: __revision
 content-length: 36
 
-2d1153d1-7d83-4470-ac21-2cc5dcbc559e
+3065308a-6da1-46fa-b7d5-7b8b77151147
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150113T224216:635567857362979795
+20150114T133823:635568395037692496
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -22,11 +22,11 @@ name: __Icon
 key: __icon
 content-length: 22
 
-People/16x16/dude3.png
+People/32x32/dude3.png
 ----version----
 language: en
 version: 1
-revision: 653e80de-d0e9-4d6f-a72d-52595485cc8a
+revision: 006bd4d9-f339-4d17-a94a-2ff24581ac4d
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-653e80de-d0e9-4d6f-a72d-52595485cc8a
+006bd4d9-f339-4d17-a94a-2ff24581ac4d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150112T163445:635566772856525174
+20150114T133824:635568395041225086
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
