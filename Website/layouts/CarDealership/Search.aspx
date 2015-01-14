@@ -52,7 +52,7 @@
       }).done(function (data) {
         var listText = '';
         for (var i = 0; i < data.length; i++) {
-          listText += '<li><a href="#" data-uri="' + data[i].RestUri + '">' + data[i].Name + '</a></li>';
+          listText += '<li><a href="#" data-uri="' + data[i].RestUri + '">' + data[i].SearchConstraintName + '</a></li>';
         }
         $(".dropdown-menu").append(listText);
 

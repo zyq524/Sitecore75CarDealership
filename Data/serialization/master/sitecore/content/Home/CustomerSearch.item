@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {12D37DF8-5A58-4068-82F2-7C448144F508}
+database: master
+path: /sitecore/content/Home/CustomerSearch
+parent: {110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}
+name: CustomerSearch
+master: {00000000-0000-0000-0000-000000000000}
+template: {E906968A-DCF7-4AB5-B4F4-09877ADB5C79}
+templatekey: SearchPage
+
+----version----
+language: en
+version: 1
+revision: d5b52228-5a58-4b71-a478-fd640066a3fe
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150114T162736
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d5b52228-5a58-4b71-a478-fd640066a3fe
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150114T162736:635568496561070581
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
