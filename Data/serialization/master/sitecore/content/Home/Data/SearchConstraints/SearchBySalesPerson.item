@@ -18,8 +18,8 @@ content-length: 29
 Search By Sales Person's Name
 ----field----
 field: {D69AD6D6-08F1-4CCA-8C52-A5929FAAAE02}
-name: URI
-key: uri
+name: RestURI
+key: resturi
 content-length: 84
 
 /sitecore/api/ssc/cardealership-services-controller/customer/na/getbysalesname?name=
