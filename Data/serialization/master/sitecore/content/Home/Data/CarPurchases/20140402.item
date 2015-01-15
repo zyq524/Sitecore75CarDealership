@@ -1,0 +1,93 @@
+----item----
+version: 1
+id: {8FCEE66B-CB7D-4A28-A5BE-DE1B521042BF}
+database: master
+path: /sitecore/content/Home/Data/CarPurchases/20140402
+parent: {D77E8530-BD0C-49D2-A7FA-5CDBA5779C3F}
+name: 20140402
+master: {00000000-0000-0000-0000-000000000000}
+template: {C37F2008-F7E9-400B-AEB7-FDF3ED44CE02}
+templatekey: CarPurchase
+
+----version----
+language: en
+version: 1
+revision: 0a920a15-affe-4afe-8578-bf530175fb56
+
+----field----
+field: {52731BBA-8408-464B-9486-1C9B8482031E}
+name: Customer
+key: customer
+content-length: 38
+
+{8B75811D-DA7B-4FDB-A56D-AC786FB9A20F}
+----field----
+field: {70F88DB6-0E07-48CF-BCB2-6F99F1F105DF}
+name: Car
+key: car
+content-length: 38
+
+{2C46591A-530C-4CE7-88A6-A018A50F525E}
+----field----
+field: {3CAD6063-6737-466A-8C50-EDA2A4624EFA}
+name: OrderDate
+key: orderdate
+content-length: 15
+
+20140402T000000
+----field----
+field: {3061A5B5-254F-42F5-87E0-78B0331065BF}
+name: PricePaid
+key: pricepaid
+content-length: 10
+
+Kr. 170000
+----field----
+field: {9FEEA1A8-F921-451F-B53C-B3F87A18A25B}
+name: SalesPerson
+key: salesperson
+content-length: 38
+
+{23C82499-A968-45BA-9AA1-86E452A1299A}
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150115T225829
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+0a920a15-affe-4afe-8578-bf530175fb56
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150115T225912:635569595521003158
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

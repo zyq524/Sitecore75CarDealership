@@ -1,0 +1,93 @@
+----item----
+version: 1
+id: {156D6EEA-BB13-449E-A811-9DDFAF3F0C03}
+database: master
+path: /sitecore/content/Home/Data/Cars/Citroen C4
+parent: {C9E6E562-0560-44F2-AEF6-91C4B6274EA0}
+name: Citroen C4
+master: {00000000-0000-0000-0000-000000000000}
+template: {C9DE665B-DC23-43C6-8E79-10D88957F3AB}
+templatekey: Car
+
+----version----
+language: en
+version: 1
+revision: bdf3b990-d013-42fd-8a36-1cec2896c007
+
+----field----
+field: {932625B3-F0F2-444C-995D-E568948326B9}
+name: Make
+key: make
+content-length: 7
+
+Citroen
+----field----
+field: {FD68C5E7-201D-49A8-9403-390A75F3B127}
+name: Model
+key: model
+content-length: 2
+
+C4
+----field----
+field: {948C75D7-D9F9-41E2-8092-02419EF3C034}
+name: Color
+key: color
+content-length: 4
+
+Grey
+----field----
+field: {49552EF8-29E7-43F2-9B3E-2C78A25A3CD9}
+name: Extras
+key: extras
+content-length: 38
+
+Citroen C4 1,6 HDi 110 Prestige E6G 5d
+----field----
+field: {A4FF329D-A085-44A3-B4AD-6E5A79670506}
+name: RecommendPrice
+key: recommendprice
+content-length: 9
+
+Kr. 69800
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150115T232312
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+bdf3b990-d013-42fd-8a36-1cec2896c007
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150115T232445:635569610853324489
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

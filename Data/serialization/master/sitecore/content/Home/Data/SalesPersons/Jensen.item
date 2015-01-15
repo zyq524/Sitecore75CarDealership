@@ -1,0 +1,86 @@
+----item----
+version: 1
+id: {23C82499-A968-45BA-9AA1-86E452A1299A}
+database: master
+path: /sitecore/content/Home/Data/SalesPersons/Jensen
+parent: {67357491-4600-4EE3-B94C-CE3EF3C1CBC7}
+name: Jensen
+master: {00000000-0000-0000-0000-000000000000}
+template: {77372298-271B-4506-8D92-0920391B7FFC}
+templatekey: SalesPerson
+
+----version----
+language: en
+version: 1
+revision: aff9db87-9007-44d4-be16-55865560155c
+
+----field----
+field: {04D9B576-50AF-441D-9151-868BEE975EF6}
+name: SalesPersonName
+key: salespersonname
+content-length: 6
+
+Rasmus
+----field----
+field: {66217296-846F-4C22-917E-05E1F1241ED8}
+name: JobTitle
+key: jobtitle
+content-length: 6
+
+Jensen
+----field----
+field: {87824836-1905-49EC-8F2D-17A077A1A7AB}
+name: Address
+key: address
+content-length: 42
+
+Lyngby Hovedgade 114, 2800, Kongens Lyngby
+----field----
+field: {1A6EEAC6-E994-4369-A3DA-2A17BAD7EB84}
+name: Salary
+key: salary
+content-length: 9
+
+Kr. 40000
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150115T225024
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+aff9db87-9007-44d4-be16-55865560155c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150115T230344:635569598245760371
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
