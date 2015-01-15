@@ -1,16 +1,15 @@
 ﻿
 namespace CarDealership.Services.Repository
 {
-  using System.Collections.Generic;
-  using System.Linq;
+  using CarDealership.Services.Helper;
   using CarDealership.Services.Model;
-  using Sitecore.Data;
-  using Sitecore.Data.Items;
-  using Sitecore.Services.Core;
+  using CarDealership.Services.Model.ResultItem;
+  using Sitecore.ContentSearch;
+  using System.Linq;
 
-  public class SearchConstraintRepository : IRepository<SearchConstraint>
+  public class SearchConstraintRepository : ISearchConstraintRepository
   {
-    private readonly Database db = Database.GetDatabase("master");
+    private readonly string indexName = "cardealership_search_constraints";
 
     public void Add(SearchConstraint entity)
     {
@@ -34,23 +33,11 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<SearchConstraint> GetAll()
     {
-      var all = db.SelectItems("fast:/sitecore/content/home/data/SearchConstraints//*[@@templatename='SearchConstraint']");
-      return this.GetSearchConstraintsFromItems(all);
-    }
-
-    private IQueryable<SearchConstraint> GetSearchConstraintsFromItems(IEnumerable<Item> items)
-    {
-      var searchConstraints = new List<SearchConstraint>();
-      foreach (var item in items)
+      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {
-        searchConstraints.Add(new SearchConstraint
-        {
-          Id = item.ID.ToString(),
-          Name = item.Fields["Name"].Value,
-          RestUri = item.Fields["Uri"].Value,
-        });
+        var searchItems = context.GetQueryable<SearchConstraintItem>().ToList();
+        return ConverterHelper.GetSearchConstraintsFromItems(searchItems).AsQueryable(); 
       }
-      return searchConstraints.AsQueryable();
     }
 
     public void Update(SearchConstraint entity)

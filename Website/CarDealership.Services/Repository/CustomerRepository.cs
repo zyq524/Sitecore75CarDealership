@@ -1,17 +1,17 @@
 ﻿
 namespace CarDealership.Services.Repository
 {
-  using System;
+  using CarDealership.Services.Helper;
   using CarDealership.Services.Model;
+  using CarDealership.Services.Model.ResultItem;
+  using Sitecore.ContentSearch;
   using Sitecore.Data;
-  using System.Collections.Generic;
+  using System;
   using System.Linq;
-  using Sitecore.Data.Items;
-  using Sitecore.Services.Core;
 
-  public class CustomerRepository : IRepository<Customer>
+  public class CustomerRepository : ICustomerRepository
   {
-    private readonly Database db = Database.GetDatabase("master");
+    private readonly string indexName = "cardealership_customers";
 
     public void Add(Customer entity)
     {
@@ -30,13 +30,21 @@ namespace CarDealership.Services.Repository
 
     public Customer FindById(string id)
     {
-      throw new System.NotImplementedException();
+
+      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      {
+        var customerItem = context.GetQueryable<CustomerItem>().First(c => c.ItemId == ID.Parse(id));
+        return ConverterHelper.GetCustomerFromItem(customerItem);
+      }
     }
 
     public IQueryable<Customer> GetAll()
     {
-      var allCustomerItems = db.SelectItems("fast:/sitecore/content/home/data/customers//*[@@templatename='Customer']");
-      return this.GetCustomesFromItems(allCustomerItems);
+      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      {
+        var customerItems = context.GetQueryable<CustomerItem>().ToList();
+        return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();
+      }
     }
 
     public void Update(Customer entity)
@@ -44,26 +52,32 @@ namespace CarDealership.Services.Repository
       throw new System.NotImplementedException();
     }
 
-    private IQueryable<Customer> GetCustomesFromItems(IEnumerable<Item> items)
+    public IQueryable<Customer> FindByName(string name)
     {
-      var customers = new List<Customer>();
-      foreach (var item in items)
+      if (string.IsNullOrEmpty(name))
       {
-        customers.Add(new Customer
-        {
-          Id = item.ID.ToString(),
-          Name = item.Fields["Name"].Value,
-          Surname = item.Fields["Surname"].Value,
-          Age = string.IsNullOrEmpty(item.Fields["Age"].Value) ? 0 : Convert.ToInt32(item.Fields["Age"].Value),
-          HouseNumber = string.IsNullOrEmpty(item.Fields["HouseNumber"].Value) ? 0 : Convert.ToInt32(item.Fields["HouseNumber"].Value),
-          Street = item.Fields["Street"].Value,
-          Town = item.Fields["Town"].Value,
-          ZipCode = item.Fields["ZipCode"].Value,
-          Country = item.Fields["Country"].Value,
-          Created = item.Statistics.Created
-        });
+        throw new ArgumentNullException("name");
       }
-      return customers.AsQueryable();
+
+      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      {
+        var customerItems = context.GetQueryable<CustomerItem>().Where(c => string.Equals(name, c.CustomerName, StringComparison.InvariantCultureIgnoreCase)).ToList();
+        return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();
+      }
+    }
+
+    public IQueryable<Customer> FindByStreet(string street)
+    {
+      if (string.IsNullOrEmpty(street))
+      {
+        throw new ArgumentNullException("street");
+      }
+
+      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      {
+        var customerItems = context.GetQueryable<CustomerItem>().Where(c => string.Equals(street, c.Street, StringComparison.InvariantCultureIgnoreCase)).ToList();
+        return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ namespace CarDealership.Services.Model
 
   public class Customer : EntityIdentity
   {
-    public string Name { get; set; }
+    public string CustomerName { get; set; }
 
     public string Surname { get; set; }
 

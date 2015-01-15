@@ -9,8 +9,9 @@ namespace CarDealership.Services.Controller
   [ServicesController]
   public class SearchConstraintController : EntityService<SearchConstraint>
   {
-    public SearchConstraintController(SearchConstraintRepository repository)
-      : base(repository)
+
+    public SearchConstraintController(ISearchConstraintRepository searchConstraintRepository)
+      : base(searchConstraintRepository)
     {
     }
 
