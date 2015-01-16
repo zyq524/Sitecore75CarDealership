@@ -11,5 +11,7 @@ namespace CarDealership.Services.Repository
     IQueryable<CarPurchase> FindByCar(List<string> carIds);
 
     IQueryable<CarPurchase> FindBySalesPerson(List<string> salesPersonIds);
+
+    IQueryable<CarPurchase> FindByCustomer(string customerId);
   }
 }

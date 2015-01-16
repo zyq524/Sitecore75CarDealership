@@ -8,6 +8,7 @@ namespace CarDealership.Services.Repository
   using Sitecore.Data;
   using System;
   using System.Linq;
+  using Sitecore.Diagnostics;
 
   public class CarRepository : ICarRepository
   {
@@ -30,6 +31,8 @@ namespace CarDealership.Services.Repository
 
     public Car FindById(string id)
     {
+      Assert.ArgumentNotNullOrEmpty(id, "id");
+
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {
         var carItem = context.GetQueryable<CarItem>().First(c => c.ItemId == ID.Parse(id));
@@ -53,6 +56,8 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<Car> FindByMake(string make)
     {
+      Assert.ArgumentNotNullOrEmpty(make, "make");
+
       if (string.IsNullOrEmpty(make))
       {
         throw new ArgumentNullException("make");
@@ -67,10 +72,7 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<Car> FindByModel(string model)
     {
-      if (string.IsNullOrEmpty(model))
-      {
-        throw new ArgumentNullException("model");
-      }
+      Assert.ArgumentNotNullOrEmpty(model, "model");
 
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {

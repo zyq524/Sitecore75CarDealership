@@ -8,6 +8,7 @@ namespace CarDealership.Services.Repository
   using Sitecore.Data;
   using System;
   using System.Linq;
+  using Sitecore.Diagnostics;
 
   public class CustomerRepository : ICustomerRepository
   {
@@ -30,6 +31,7 @@ namespace CarDealership.Services.Repository
 
     public Customer FindById(string id)
     {
+      Assert.ArgumentNotNullOrEmpty(id, "id");
 
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {
@@ -54,10 +56,7 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<Customer> FindByName(string name)
     {
-      if (string.IsNullOrEmpty(name))
-      {
-        throw new ArgumentNullException("name");
-      }
+      Assert.ArgumentNotNullOrEmpty(name, "name");
 
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {
@@ -68,10 +67,7 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<Customer> FindByStreet(string street)
     {
-      if (string.IsNullOrEmpty(street))
-      {
-        throw new ArgumentNullException("street");
-      }
+      Assert.ArgumentNotNullOrEmpty(street, "street");
 
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {

@@ -1,15 +1,14 @@
 ﻿
 namespace CarDealership.Services.Controller
 {
-  using System.Linq;
   using CarDealership.Services.Helper;
   using CarDealership.Services.Model;
   using CarDealership.Services.Repository;
   using Sitecore.Diagnostics;
   using Sitecore.Services.Core;
   using Sitecore.Services.Infrastructure.Sitecore.Services;
-  using System;
   using System.Collections.Generic;
+  using System.Linq;
   using System.Web.Http;
 
   [ServicesController]
@@ -72,10 +71,7 @@ namespace CarDealership.Services.Controller
     public CustomerController(ICustomerRepository customerRepository)
       : base(customerRepository)
     {
-      if (customerRepository == null)
-      {
-        throw new ArgumentNullException("customerRepository");
-      }
+      Assert.ArgumentNotNull(customerRepository, "customerRepository");
 
       this.customerRepository = customerRepository;
     }
@@ -116,8 +112,6 @@ namespace CarDealership.Services.Controller
     public IEnumerable<Customer> GetByCarModel(string carModel)
     {
       Assert.ArgumentNotNullOrEmpty(carModel, "carModel");
-
-      var customers = new List<Customer>();
 
       var cars = this.CarRepository.FindByModel(carModel);
       var carPurchases = this.CarPurchaseRepository.FindByCar(cars.Select(c => c.Id.ToString()).ToList());

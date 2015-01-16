@@ -8,6 +8,7 @@ namespace CarDealership.Services.Repository
   using CarDealership.Services.Model.ResultItem;
   using Sitecore.ContentSearch;
   using Sitecore.Data;
+  using Sitecore.Diagnostics;
 
   public class SalesPersonRepository : ISalesPersonRepository
   {
@@ -30,6 +31,7 @@ namespace CarDealership.Services.Repository
 
     public SalesPerson FindById(string id)
     {
+      Assert.ArgumentNotNullOrEmpty(id, "id");
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {
         var salesPersonItem = context.GetQueryable<SalesPersonItem>().First(s => s.ItemId == ID.Parse(id));
@@ -48,10 +50,7 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<SalesPerson> FindByName(string name)
     {
-      if (string.IsNullOrEmpty(name))
-      {
-        throw new ArgumentNullException("name");
-      }
+      Assert.ArgumentNotNullOrEmpty(name, "name");
 
       using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
       {

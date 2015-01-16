@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\CarController.cs" />
+    <Compile Include="Controller\CarPurchaseController.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\SalesPersonController.cs" />
     <Compile Include="Controller\SearchConstraintController.cs" />
