@@ -12,7 +12,20 @@ namespace CarDealership.Services.Repository
 
   public class CustomerRepository : ICustomerRepository
   {
-    private readonly string indexName = "cardealership_customers";
+    private readonly ISearchIndex searchIndex;
+
+    public CustomerRepository(ISearchIndex searchIndex)
+    {
+      Assert.ArgumentNotNull(searchIndex, "searchIndex");
+
+      this.searchIndex = searchIndex;
+    }
+
+    public CustomerRepository()
+      : this(ContentSearchManager.GetIndex("cardealership_customers"))
+    {
+      
+    }
 
     public void Add(Customer entity)
     {
@@ -33,16 +46,16 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(id, "id");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
-        var customerItem = context.GetQueryable<CustomerItem>().First(c => c.ItemId == ID.Parse(id));
-        return ConverterHelper.GetCustomerFromItem(customerItem);
+        var customerItem = context.GetQueryable<CustomerItem>().FirstOrDefault(c => c.ItemId == ID.Parse(id));
+        return customerItem == null ? null : ConverterHelper.GetCustomerFromItem(customerItem);
       }
     }
 
     public IQueryable<Customer> GetAll()
     {
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var customerItems = context.GetQueryable<CustomerItem>().ToList();
         return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();
@@ -58,7 +71,7 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(name, "name");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var customerItems = context.GetQueryable<CustomerItem>().Where(c => string.Equals(name, c.CustomerName, StringComparison.InvariantCultureIgnoreCase)).ToList();
         return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();
@@ -69,7 +82,7 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(street, "street");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var customerItems = context.GetQueryable<CustomerItem>().Where(c => string.Equals(street, c.Street, StringComparison.InvariantCultureIgnoreCase)).ToList();
         return ConverterHelper.GetCustomersFromItems(customerItems).AsQueryable();

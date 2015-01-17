@@ -12,7 +12,20 @@ namespace CarDealership.Services.Repository
 
   public class CarRepository : ICarRepository
   {
-    private readonly string indexName = "cardealership_cars";
+    private readonly ISearchIndex searchIndex;
+
+    public CarRepository(ISearchIndex searchIndex)
+    {
+      Assert.ArgumentNotNull(searchIndex, "searchIndex");
+
+      this.searchIndex = searchIndex;
+    }
+
+    public CarRepository()
+      : this(ContentSearchManager.GetIndex("cardealership_cars"))
+    {
+      
+    }
 
     public void Add(Car entity)
     {
@@ -33,16 +46,16 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(id, "id");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
-        var carItem = context.GetQueryable<CarItem>().First(c => c.ItemId == ID.Parse(id));
-        return ConverterHelper.GetCarFromItem(carItem);
+        var carItem = context.GetQueryable<CarItem>().FirstOrDefault(c => c.ItemId == ID.Parse(id));
+        return carItem == null ? null : ConverterHelper.GetCarFromItem(carItem);
       }
     }
 
     public IQueryable<Car> GetAll()
     {
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carItems = context.GetQueryable<CarItem>().ToList();
         return ConverterHelper.GetCarsFromItems(carItems).AsQueryable();
@@ -63,7 +76,7 @@ namespace CarDealership.Services.Repository
         throw new ArgumentNullException("make");
       }
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carItems = context.GetQueryable<CarItem>().Where(c => string.Equals(make, c.Make, StringComparison.InvariantCultureIgnoreCase)).ToList();
         return ConverterHelper.GetCarsFromItems(carItems).AsQueryable();
@@ -74,7 +87,7 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(model, "model");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carItems = context.GetQueryable<CarItem>().Where(c => string.Equals(model, c.Model, StringComparison.InvariantCultureIgnoreCase)).ToList();
         return ConverterHelper.GetCarsFromItems(carItems).AsQueryable();

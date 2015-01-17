@@ -6,10 +6,24 @@ namespace CarDealership.Services.Repository
   using CarDealership.Services.Model.ResultItem;
   using Sitecore.ContentSearch;
   using System.Linq;
+  using Sitecore.Diagnostics;
 
   public class SearchConstraintRepository : ISearchConstraintRepository
   {
-    private readonly string indexName = "cardealership_search_constraints";
+    private readonly ISearchIndex searchIndex;
+
+    public SearchConstraintRepository(ISearchIndex searchIndex)
+    {
+      Assert.ArgumentNotNull(searchIndex, "searchIndex");
+
+      this.searchIndex = searchIndex;
+    }
+
+    public SearchConstraintRepository()
+      : this(ContentSearchManager.GetIndex("cardealership_search_constraints"))
+    {
+
+    }
 
     public void Add(SearchConstraint entity)
     {
@@ -33,10 +47,10 @@ namespace CarDealership.Services.Repository
 
     public IQueryable<SearchConstraint> GetAll()
     {
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var searchItems = context.GetQueryable<SearchConstraintItem>().ToList();
-        return ConverterHelper.GetSearchConstraintsFromItems(searchItems).AsQueryable(); 
+        return ConverterHelper.GetSearchConstraintsFromItems(searchItems).AsQueryable();
       }
     }
 

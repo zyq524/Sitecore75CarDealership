@@ -13,7 +13,20 @@ namespace CarDealership.Services.Repository
 
   public class CarPurchaseRepository : ICarPurchaseRepository
   {
-    private readonly string indexName = "cardealership_carpurchases";
+    private readonly ISearchIndex searchIndex;
+
+    public CarPurchaseRepository(ISearchIndex searchIndex)
+    {
+      Assert.ArgumentNotNull(searchIndex, "searchIndex");
+
+      this.searchIndex = searchIndex;
+    }
+
+    public CarPurchaseRepository()
+      : this(ContentSearchManager.GetIndex("cardealership_carpurchases"))
+    {
+      
+    }
 
     public void Add(CarPurchase entity)
     {
@@ -34,16 +47,16 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(id, "id");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
-        var carPurchaseItem = context.GetQueryable<CarPurchaseItem>().First(c => c.ItemId == ID.Parse(id));
-        return ConverterHelper.GetCarPurchaseFromItem(carPurchaseItem);
+        var carPurchaseItem = context.GetQueryable<CarPurchaseItem>().FirstOrDefault(c => c.ItemId == ID.Parse(id));
+        return carPurchaseItem == null ? null : ConverterHelper.GetCarPurchaseFromItem(carPurchaseItem);
       }
     }
 
     public IQueryable<CarPurchase> GetAll()
     {
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carPurchaseItems = context.GetQueryable<CarPurchaseItem>().ToList();
         return ConverterHelper.GetCarPurchasesFromItems(carPurchaseItems).AsQueryable();
@@ -58,7 +71,7 @@ namespace CarDealership.Services.Repository
         return new List<CarPurchase>().AsQueryable();
       }
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carPurchaseItems = context.GetQueryable<CarPurchaseItem>().Where(carPurchaseItem => carIds.Contains(carPurchaseItem.Car)).ToList();
         return ConverterHelper.GetCarPurchasesFromItems(carPurchaseItems).AsQueryable();
@@ -73,7 +86,7 @@ namespace CarDealership.Services.Repository
         return new List<CarPurchase>().AsQueryable();
       }
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carPurchaseItems = context.GetQueryable<CarPurchaseItem>().Where(carPurchaseItem => salesPersonIds.Contains(carPurchaseItem.SalesPerson)).ToList();
         return ConverterHelper.GetCarPurchasesFromItems(carPurchaseItems).AsQueryable();
@@ -84,7 +97,7 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(customerId, "customerId");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var carPurchaseItems = context.GetQueryable<CarPurchaseItem>().Where(carPurchaseItem => carPurchaseItem.Customer == customerId).ToList();
         return ConverterHelper.GetCarPurchasesFromItems(carPurchaseItems).AsQueryable();

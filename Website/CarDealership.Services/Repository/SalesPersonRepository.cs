@@ -12,7 +12,20 @@ namespace CarDealership.Services.Repository
 
   public class SalesPersonRepository : ISalesPersonRepository
   {
-    private readonly string indexName = "cardealership_salespersons";
+    private readonly ISearchIndex searchIndex;
+
+    public SalesPersonRepository(ISearchIndex searchIndex)
+    {
+      Assert.ArgumentNotNull(searchIndex, "searchIndex");
+
+      this.searchIndex = searchIndex;
+    }
+
+    public SalesPersonRepository()
+      : this(ContentSearchManager.GetIndex("cardealership_salespersons"))
+    {
+
+    }
 
     public void Add(SalesPerson entity)
     {
@@ -32,16 +45,16 @@ namespace CarDealership.Services.Repository
     public SalesPerson FindById(string id)
     {
       Assert.ArgumentNotNullOrEmpty(id, "id");
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
-        var salesPersonItem = context.GetQueryable<SalesPersonItem>().First(s => s.ItemId == ID.Parse(id));
-        return ConverterHelper.GetSalesPersonFromItem(salesPersonItem);
+        var salesPersonItem = context.GetQueryable<SalesPersonItem>().FirstOrDefault(s => s.ItemId == ID.Parse(id));
+        return salesPersonItem == null ? null : ConverterHelper.GetSalesPersonFromItem(salesPersonItem);
       }
     }
 
     public IQueryable<SalesPerson> GetAll()
     {
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var salesPersonItems = context.GetQueryable<SalesPersonItem>().ToList();
         return ConverterHelper.GetSalesPersonsFromItems(salesPersonItems).AsQueryable();
@@ -52,7 +65,7 @@ namespace CarDealership.Services.Repository
     {
       Assert.ArgumentNotNullOrEmpty(name, "name");
 
-      using (var context = ContentSearchManager.GetIndex(indexName).CreateSearchContext())
+      using (var context = this.searchIndex.CreateSearchContext())
       {
         var salesPersonItems = context.GetQueryable<SalesPersonItem>().Where(s => string.Equals(name, s.SalesPersonName, StringComparison.InvariantCultureIgnoreCase)).ToList();
         return ConverterHelper.GetSalesPersonsFromItems(salesPersonItems).AsQueryable();
